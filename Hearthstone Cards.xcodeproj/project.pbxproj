@@ -8,11 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		8CCBA3B32482C07A00934993 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCBA3B22482C07A00934993 /* AppDelegate.swift */; };
-		8CCBA3B52482C07A00934993 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCBA3B42482C07A00934993 /* ViewController.swift */; };
 		8CCBA3B82482C07A00934993 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CCBA3B62482C07A00934993 /* Main.storyboard */; };
 		8CCBA3BA2482C07C00934993 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CCBA3B92482C07C00934993 /* Assets.xcassets */; };
 		8CCBA3BD2482C07C00934993 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CCBA3BB2482C07C00934993 /* LaunchScreen.storyboard */; };
 		8CCBA3C82482C07C00934993 /* Hearthstone_CardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCBA3C72482C07C00934993 /* Hearthstone_CardsTests.swift */; };
+		8CF65DC12482FF3C0013BDD2 /* HearthstoneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF65DC02482FF3C0013BDD2 /* HearthstoneRouter.swift */; };
+		8CF65DC624830E290013BDD2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF65DC424830E290013BDD2 /* HomeViewController.swift */; };
+		8CF65DC724830E290013BDD2 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF65DC524830E290013BDD2 /* HomeViewController.xib */; };
+		8CF65DCA24830E6D0013BDD2 /* CardsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF65DC824830E6D0013BDD2 /* CardsListViewController.swift */; };
+		8CF65DCB24830E6D0013BDD2 /* CardsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF65DC924830E6D0013BDD2 /* CardsListViewController.xib */; };
+		8CF65DCD2483220E0013BDD2 /* CardsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF65DCC2483220E0013BDD2 /* CardsListPresenter.swift */; };
+		8CF65DCF248322440013BDD2 /* CardsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF65DCE248322440013BDD2 /* CardsListInteractor.swift */; };
+		8CF65DD1248325310013BDD2 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF65DD0248325310013BDD2 /* HomePresenter.swift */; };
+		8CF65DD32483253E0013BDD2 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF65DD22483253E0013BDD2 /* HomeInteractor.swift */; };
+		8CF65DD7248328960013BDD2 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF65DD6248328960013BDD2 /* Card.swift */; };
+		8CF65DD924832A630013BDD2 /* CardsFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF65DD824832A630013BDD2 /* CardsFilters.swift */; };
+		8CF65DDB248330240013BDD2 /* GameInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF65DDA248330240013BDD2 /* GameInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +39,6 @@
 /* Begin PBXFileReference section */
 		8CCBA3AF2482C07A00934993 /* Hearthstone Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hearthstone Cards.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CCBA3B22482C07A00934993 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8CCBA3B42482C07A00934993 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8CCBA3B72482C07A00934993 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8CCBA3B92482C07C00934993 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8CCBA3BC2482C07C00934993 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +46,18 @@
 		8CCBA3C32482C07C00934993 /* Hearthstone CardsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hearthstone CardsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CCBA3C72482C07C00934993 /* Hearthstone_CardsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hearthstone_CardsTests.swift; sourceTree = "<group>"; };
 		8CCBA3C92482C07C00934993 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8CF65DC02482FF3C0013BDD2 /* HearthstoneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HearthstoneRouter.swift; sourceTree = "<group>"; };
+		8CF65DC424830E290013BDD2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		8CF65DC524830E290013BDD2 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		8CF65DC824830E6D0013BDD2 /* CardsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsListViewController.swift; sourceTree = "<group>"; };
+		8CF65DC924830E6D0013BDD2 /* CardsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardsListViewController.xib; sourceTree = "<group>"; };
+		8CF65DCC2483220E0013BDD2 /* CardsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsListPresenter.swift; sourceTree = "<group>"; };
+		8CF65DCE248322440013BDD2 /* CardsListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsListInteractor.swift; sourceTree = "<group>"; };
+		8CF65DD0248325310013BDD2 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		8CF65DD22483253E0013BDD2 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		8CF65DD6248328960013BDD2 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		8CF65DD824832A630013BDD2 /* CardsFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsFilters.swift; sourceTree = "<group>"; };
+		8CF65DDA248330240013BDD2 /* GameInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +99,11 @@
 		8CCBA3B12482C07A00934993 /* Hearthstone Cards */ = {
 			isa = PBXGroup;
 			children = (
+				8CF65DD5248326E70013BDD2 /* Repository */,
+				8CF65DD4248326DF0013BDD2 /* Model */,
+				8CF65DBD2482FE7F0013BDD2 /* Scenes */,
+				8CF65DBC2482FE750013BDD2 /* Router */,
 				8CCBA3B22482C07A00934993 /* AppDelegate.swift */,
-				8CCBA3B42482C07A00934993 /* ViewController.swift */,
 				8CCBA3B62482C07A00934993 /* Main.storyboard */,
 				8CCBA3B92482C07C00934993 /* Assets.xcassets */,
 				8CCBA3BB2482C07C00934993 /* LaunchScreen.storyboard */,
@@ -94,6 +119,62 @@
 				8CCBA3C92482C07C00934993 /* Info.plist */,
 			);
 			path = "Hearthstone CardsTests";
+			sourceTree = "<group>";
+		};
+		8CF65DBC2482FE750013BDD2 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				8CF65DC02482FF3C0013BDD2 /* HearthstoneRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		8CF65DBD2482FE7F0013BDD2 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				8CF65DC224830D970013BDD2 /* Home */,
+				8CF65DC324830DA10013BDD2 /* Cards List */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		8CF65DC224830D970013BDD2 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				8CF65DC424830E290013BDD2 /* HomeViewController.swift */,
+				8CF65DC524830E290013BDD2 /* HomeViewController.xib */,
+				8CF65DD0248325310013BDD2 /* HomePresenter.swift */,
+				8CF65DD22483253E0013BDD2 /* HomeInteractor.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		8CF65DC324830DA10013BDD2 /* Cards List */ = {
+			isa = PBXGroup;
+			children = (
+				8CF65DC824830E6D0013BDD2 /* CardsListViewController.swift */,
+				8CF65DC924830E6D0013BDD2 /* CardsListViewController.xib */,
+				8CF65DCC2483220E0013BDD2 /* CardsListPresenter.swift */,
+				8CF65DCE248322440013BDD2 /* CardsListInteractor.swift */,
+			);
+			path = "Cards List";
+			sourceTree = "<group>";
+		};
+		8CF65DD4248326DF0013BDD2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8CF65DD6248328960013BDD2 /* Card.swift */,
+				8CF65DD824832A630013BDD2 /* CardsFilters.swift */,
+				8CF65DDA248330240013BDD2 /* GameInfo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8CF65DD5248326E70013BDD2 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +227,11 @@
 				TargetAttributes = {
 					8CCBA3AE2482C07A00934993 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1140;
 					};
 					8CCBA3C22482C07C00934993 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1140;
 						TestTargetID = 8CCBA3AE2482C07A00934993;
 					};
 				};
@@ -177,8 +260,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CF65DCB24830E6D0013BDD2 /* CardsListViewController.xib in Resources */,
 				8CCBA3BD2482C07C00934993 /* LaunchScreen.storyboard in Resources */,
 				8CCBA3BA2482C07C00934993 /* Assets.xcassets in Resources */,
+				8CF65DC724830E290013BDD2 /* HomeViewController.xib in Resources */,
 				8CCBA3B82482C07A00934993 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,8 +282,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CCBA3B52482C07A00934993 /* ViewController.swift in Sources */,
+				8CF65DD1248325310013BDD2 /* HomePresenter.swift in Sources */,
+				8CF65DD7248328960013BDD2 /* Card.swift in Sources */,
+				8CF65DCD2483220E0013BDD2 /* CardsListPresenter.swift in Sources */,
+				8CF65DD924832A630013BDD2 /* CardsFilters.swift in Sources */,
+				8CF65DCA24830E6D0013BDD2 /* CardsListViewController.swift in Sources */,
+				8CF65DD32483253E0013BDD2 /* HomeInteractor.swift in Sources */,
+				8CF65DC12482FF3C0013BDD2 /* HearthstoneRouter.swift in Sources */,
 				8CCBA3B32482C07A00934993 /* AppDelegate.swift in Sources */,
+				8CF65DDB248330240013BDD2 /* GameInfo.swift in Sources */,
+				8CF65DCF248322440013BDD2 /* CardsListInteractor.swift in Sources */,
+				8CF65DC624830E290013BDD2 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +385,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -346,7 +440,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -363,14 +457,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J8KTVZYBHF;
 				INFOPLIST_FILE = "Hearthstone Cards/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sflorido.Hearthstone-Cards";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -381,14 +476,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J8KTVZYBHF;
 				INFOPLIST_FILE = "Hearthstone Cards/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sflorido.Hearthstone-Cards";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -407,7 +503,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sflorido.Hearthstone-CardsTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hearthstone Cards.app/Hearthstone Cards";
 			};
@@ -428,7 +524,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sflorido.Hearthstone-CardsTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hearthstone Cards.app/Hearthstone Cards";
 			};

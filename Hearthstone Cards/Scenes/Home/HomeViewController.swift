@@ -18,6 +18,7 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol, UITableV
     var interactor: HomeInteractorProtocol?
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     
     var categoriesViewModel: [HomeViewModel.CategoryCellViewModel]? {
         didSet {
@@ -27,21 +28,39 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
+        setupViews()
         interactor?.fetchCategories()
     }
-
-    private func setup() {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        tableView.removeObserver(self, forKeyPath: "contentSize")
+        super.viewWillDisappear(animated)
+    }
+    
+    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if(keyPath == "contentSize") {
+            if let newvalue = change?[.newKey] {
+                let newsize  = newvalue as! CGSize
+                tableViewHeight.constant =  newsize.height
+            }
+        }
+    }
+    
+    private func setupViews() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "CategoriesTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
-        
     }
-
+    
     func displayCategories(_ categories: HomeViewModel) {
         categoriesViewModel = categories.categories
     }
-
+    
     // MARK: - Navigation
     @IBAction func showCardsButton(_ sender: UIButton) {
         router?.showCardsList()
@@ -55,7 +74,7 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CategoriesTableViewCell
-                
+        
         if let categories = categoriesViewModel, categories.count > indexPath.row {
             cell.category = categories[indexPath.row]
             cell.collectionView.tag = indexPath.row

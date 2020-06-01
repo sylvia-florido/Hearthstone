@@ -23,7 +23,7 @@ class HomeInteractor: HomeInteractorProtocol {
     }
     
     func fetchCategories() {
-        let gameInfo = GameInfo(with: [], classes: ["a", "b", "c"], types: ["a", "b", "c"], factions: ["a", "b", "c"], qualities: ["a", "b", "c"], races: [])
+        let gameInfo = GameInfo(with: ["a"], classes: ["a", "b", "c"], types: ["a", "b", "c"], factions: ["a", "b", "c"], qualities: ["a", "b", "c"], races: ["a", "b"])
         self.categories = gameInfo.cardCategories
         
         if let categories = self.categories {

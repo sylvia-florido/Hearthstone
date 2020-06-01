@@ -8,8 +8,8 @@
 
 import Foundation
 
-
 enum CardsFilters {
+    case bySet
     case byClass
     case byType
     case race

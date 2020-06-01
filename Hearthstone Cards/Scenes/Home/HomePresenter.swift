@@ -9,7 +9,7 @@
 import Foundation
 
 protocol HomePresenterProtocol {
-    
+    func presentCategories(_ categories: [CardCategory])
 }
 
 class HomePresenter: HomePresenterProtocol {
@@ -17,5 +17,13 @@ class HomePresenter: HomePresenterProtocol {
     
     init(with controller: HomeViewControllerProtocol) {
         self.controller = controller
+    }
+    
+    func presentCategories(_ categories: [CardCategory]) {
+        let categoryCellViewModel = categories.map { (cat) -> HomeViewModel.CategoryCellViewModel in
+            HomeViewModel.CategoryCellViewModel(name: cat.name, options: cat.options)
+        }
+        let viewModel = HomeViewModel(categories: categoryCellViewModel)
+        controller?.displayCategories(viewModel)
     }
 }

@@ -12,7 +12,7 @@ import Foundation
 class Card: NSObject {
     let cardId: String
     let name: String
-    var cardSet: String?
+    let cardSet: String
     let cardType: String
     let faction: String
     let race: String
@@ -26,7 +26,18 @@ class Card: NSObject {
     let imgGoldUrl: String
     
     
-    override init(cardId: String, name: String) {
-        super.init()
+    init(cardId: String, name: String, cardSet: String, cardType: String, faction: String, race: String, rarity: String, cost: Int, attack: Int, health: Int, imgUrl: String,  imgGoldUrl: String ) {
+        self.cardId = cardId
+        self.name = name
+        self.cardSet = cardSet
+        self.cardType = cardType
+        self.faction = faction
+        self.race = race
+        self.rarity = rarity
+        self.cost = cost
+        self.attack = attack
+        self.health = health
+        self.imgUrl = imgUrl
+        self.imgGoldUrl = imgGoldUrl
     }
 }

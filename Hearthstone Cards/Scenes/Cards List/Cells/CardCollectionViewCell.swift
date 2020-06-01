@@ -11,10 +11,9 @@ import UIKit
 class CardCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var imageView: UIImageView!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 
+    override func prepareForReuse() {
+           super.prepareForReuse()
+           imageView?.image = nil
+       }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 protocol HomeViewControllerProtocol: class {
     func displayCategories(_ categories: HomeViewModel)
-    func displayCardsListScene(categoryName: String, option: String)
+    func displayCardsListScene(categoryType: CardsFilter, option: String)
 }
 
 class HomeViewController: UIViewController, HomeViewControllerProtocol, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
@@ -29,6 +29,7 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         setupViews()
         interactor?.fetchCategories()
     }
@@ -63,8 +64,8 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol, UITableV
     }
     
     // MARK: - Navigation
-    func displayCardsListScene(categoryName: String, option: String) {
-        router?.showCardsList(categoryName: categoryName, option: option)
+    func displayCardsListScene(categoryType: CardsFilter, option: String) {
+        router?.showCardsList(categoryType: categoryType, option: option)
     }
 
     

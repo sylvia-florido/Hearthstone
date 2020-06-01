@@ -16,21 +16,22 @@ protocol HomeInteractorProtocol {
 class HomeInteractor: HomeInteractorProtocol {
     
     var presenter: HomePresenterProtocol
-    
+    var repository: HearthstoneRepository
     var categories: [CardCategory]?
     
-    init(with presenter: HomePresenterProtocol) {
+    init(with presenter: HomePresenterProtocol, repository: HearthstoneRepository) {
         self.presenter = presenter
+        self.repository = repository
     }
     
     func fetchCategories() {
-        let gameInfo = GameInfo(with: ["a"], classes: ["a", "b", "c"], types: ["a", "b", "c"], factions: ["a", "b", "c"], qualities: ["a", "b", "c"], races: ["a", "b"])
-        self.categories = gameInfo.cardCategories
-        
-        if let categories = self.categories {
-            presenter.presentCategories(categories)
-        } else {
-            // display error
+        repository.getCategories { (gameInfo, error) in
+            if let gameInfo = gameInfo {
+                self.categories = gameInfo.cardCategories
+                self.presenter.presentCategories(gameInfo.cardCategories)
+            } else {
+                // display error
+            }
         }
     }
     
@@ -41,6 +42,6 @@ class HomeInteractor: HomeInteractorProtocol {
         guard selectedCategory.options.count > optionIndex else { return }
         let option = selectedCategory.options[optionIndex]
         
-        presenter.presentCardsList(categoryName: selectedCategory.name, option: option)
+        presenter.presentCardsList(categoryType: selectedCategory.filterType, option: option)
     }
 }

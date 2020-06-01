@@ -15,13 +15,18 @@ protocol CardsListInteractorProtocol {
 
 class CardsListInteractor: CardsListInteractorProtocol {
     
-    var presenter: CardsListPresenterProtocol
-    var categoryName: String
-    var option: String
+    let presenter: CardsListPresenterProtocol
+    let repository: HearthstoneRepository
+    let categoryName: String
+    let categoryFilter: CardsFilter
+    let option: String
+    var cards: [Card]?
     
-    init(with presenter: CardsListPresenterProtocol, categoryName: String, option: String) {
+    init(with presenter: CardsListPresenterProtocol, repository: HearthstoneRepository, categoryType: CardsFilter, option: String) {
         self.presenter = presenter
-        self.categoryName = categoryName
+        self.repository = repository
+        self.categoryName = categoryType.rawValue
+        self.categoryFilter = categoryType
         self.option = option
     }
     
@@ -30,7 +35,16 @@ class CardsListInteractor: CardsListInteractorProtocol {
     }
     
     func fetchCards() {
-        
+        repository.getCardsByFilter(filter: categoryFilter, option: option) {  (cards, error) in
+            if let cards = cards {
+                self.cards = cards
+                let cardsWithImages = cards.filter { !$0.imgUrl.isEmpty }
+                let urlStrs = cardsWithImages.map{ $0.imgUrl }
+                self.presenter.presentImages(urlStrs)
+            } else {
+                // display error
+            }
+        }
     }
 
     

@@ -10,6 +10,7 @@ import Foundation
 
 protocol CardsListPresenterProtocol {
     func presentCategoryName(_ name: String)
+    func presentImages(_ imagesUrlStr: [String])
 }
 
 class CardsListPresenter: CardsListPresenterProtocol {
@@ -20,7 +21,15 @@ class CardsListPresenter: CardsListPresenterProtocol {
     }
     
     func presentCategoryName(_ name: String) {
-        controller?.displayCategoryName(name)
+        let viewModel = CardsListViewModel.CategoryName(filterName: name)
+        controller?.displayCategoryName(viewModel)
     }
+    
+    func presentImages(_ imagesUrlStr: [String]) {
+        let viewModel = CardsListViewModel.CardsUrls(cardsUrlList: imagesUrlStr)
+        controller?.displayImages(viewModel)
+    }
+    
+
 
 }

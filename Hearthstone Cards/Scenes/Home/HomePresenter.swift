@@ -10,7 +10,7 @@ import Foundation
 
 protocol HomePresenterProtocol {
     func presentCategories(_ categories: [CardCategory])
-    func presentCardsList(categoryName: String, option: String)
+    func presentCardsList(categoryType: CardsFilter, option: String)
 }
 
 class HomePresenter: HomePresenterProtocol {
@@ -28,8 +28,8 @@ class HomePresenter: HomePresenterProtocol {
         controller?.displayCategories(viewModel)
     }
     
-    func presentCardsList(categoryName: String, option: String) {
-        controller?.displayCardsListScene(categoryName: categoryName, option: option)
+    func presentCardsList(categoryType: CardsFilter, option: String) {
+        controller?.displayCardsListScene(categoryType: categoryType, option: option)
     }
 
 }

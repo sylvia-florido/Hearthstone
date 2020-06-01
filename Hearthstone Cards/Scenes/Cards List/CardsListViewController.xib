@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardsListViewController" customModule="Hearthstone_Cards" customModuleProvider="target">
             <connections>
+                <outlet property="collectionView" destination="gEp-4O-ppd" id="98A-jB-tLB"/>
+                <outlet property="filterNameLabel" destination="9xc-7O-wyc" id="Mzv-Ct-UOc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,17 +20,97 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cards List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kvk-3R-HCq">
-                    <rect key="frame" x="169" y="438" width="77" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wgk-e5-ZQ2">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HxG-xL-e0q" userLabel="Content View">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="795"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hiq-MB-PE3" userLabel="Top View">
+                                    <rect key="frame" x="0.0" y="20" width="414" height="84"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="IoT-76-NpR">
+                                            <rect key="frame" x="24" y="10" width="360" height="64"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8NO-sk-P26">
+                                                    <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="64" id="Fmd-1B-ET9"/>
+                                                        <constraint firstAttribute="width" constant="64" id="w8R-rQ-PU4"/>
+                                                    </constraints>
+                                                    <state key="normal" image="Back Button"/>
+                                                    <connections>
+                                                        <action selector="backButton:" destination="-1" eventType="touchUpInside" id="Zty-gv-VvN"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xc-7O-wyc">
+                                                    <rect key="frame" x="195" y="17" width="165" height="30.5"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="22"/>
+                                                    <color key="textColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="IoT-76-NpR" secondAttribute="trailing" constant="30" id="CHP-QR-HOz"/>
+                                        <constraint firstAttribute="height" constant="84" id="HwA-zP-iHy"/>
+                                        <constraint firstAttribute="bottom" secondItem="IoT-76-NpR" secondAttribute="bottom" constant="10" id="QfA-EK-OHi"/>
+                                        <constraint firstItem="IoT-76-NpR" firstAttribute="top" secondItem="hiq-MB-PE3" secondAttribute="top" constant="10" id="jHy-22-Hfe"/>
+                                        <constraint firstItem="IoT-76-NpR" firstAttribute="leading" secondItem="hiq-MB-PE3" secondAttribute="leading" constant="24" id="qDC-CO-ubB"/>
+                                        <constraint firstItem="IoT-76-NpR" firstAttribute="centerY" secondItem="hiq-MB-PE3" secondAttribute="centerY" id="rxa-14-1W1"/>
+                                    </constraints>
+                                </view>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="gEp-4O-ppd">
+                                    <rect key="frame" x="30" y="112" width="354" height="653"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="653" id="ojE-gi-qV2"/>
+                                    </constraints>
+                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="20" id="0ht-ci-MOO">
+                                        <size key="itemSize" width="147" height="223"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                </collectionView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="gEp-4O-ppd" firstAttribute="top" secondItem="hiq-MB-PE3" secondAttribute="bottom" constant="8" id="7e9-lt-QPO"/>
+                                <constraint firstAttribute="bottom" secondItem="gEp-4O-ppd" secondAttribute="bottom" constant="30" id="ER5-Wy-LDN"/>
+                                <constraint firstItem="hiq-MB-PE3" firstAttribute="leading" secondItem="HxG-xL-e0q" secondAttribute="leading" id="NKh-dw-4Wy"/>
+                                <constraint firstItem="gEp-4O-ppd" firstAttribute="leading" secondItem="HxG-xL-e0q" secondAttribute="leading" constant="30" id="Qn8-Lf-hMl"/>
+                                <constraint firstAttribute="trailing" secondItem="gEp-4O-ppd" secondAttribute="trailing" constant="30" id="YMy-ww-hM1"/>
+                                <constraint firstAttribute="trailing" secondItem="hiq-MB-PE3" secondAttribute="trailing" id="xXK-qq-Ly7"/>
+                                <constraint firstItem="hiq-MB-PE3" firstAttribute="top" secondItem="HxG-xL-e0q" secondAttribute="top" constant="20" id="y8P-ak-Yfn"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="HxG-xL-e0q" firstAttribute="top" secondItem="wgk-e5-ZQ2" secondAttribute="top" id="Ltj-iC-Oyu"/>
+                        <constraint firstAttribute="bottom" secondItem="HxG-xL-e0q" secondAttribute="bottom" id="UcZ-eO-bbQ"/>
+                        <constraint firstItem="HxG-xL-e0q" firstAttribute="leading" secondItem="wgk-e5-ZQ2" secondAttribute="leading" id="iIm-2P-XnF"/>
+                        <constraint firstAttribute="trailing" secondItem="HxG-xL-e0q" secondAttribute="trailing" id="k7d-Af-347"/>
+                    </constraints>
+                </scrollView>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="HxG-xL-e0q" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="A2z-mJ-Sfq"/>
+                <constraint firstItem="wgk-e5-ZQ2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="EWq-hW-L6J"/>
+                <constraint firstItem="wgk-e5-ZQ2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bAo-CY-YBv"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wgk-e5-ZQ2" secondAttribute="trailing" id="dEh-Td-4Q8"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="wgk-e5-ZQ2" secondAttribute="bottom" id="oD7-x4-WFd"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="139" y="142"/>
+            <point key="canvasLocation" x="137.68115942028987" y="141.29464285714286"/>
         </view>
     </objects>
+    <resources>
+        <image name="Back Button" width="64" height="64"/>
+    </resources>
 </document>

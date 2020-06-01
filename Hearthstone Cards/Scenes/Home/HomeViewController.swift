@@ -10,6 +10,7 @@ import UIKit
 
 protocol HomeViewControllerProtocol: class {
     func displayCategories(_ categories: HomeViewModel)
+    func displayCardsListScene(categoryName: String, option: String)
 }
 
 class HomeViewController: UIViewController, HomeViewControllerProtocol, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
@@ -62,9 +63,11 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol, UITableV
     }
     
     // MARK: - Navigation
-    @IBAction func showCardsButton(_ sender: UIButton) {
-        router?.showCardsList()
+    func displayCardsListScene(categoryName: String, option: String) {
+        router?.showCardsList(categoryName: categoryName, option: option)
     }
+
+    
     
     
     // MARK: - UITableViewDataSource
@@ -96,23 +99,20 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol, UITableV
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CardCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! BoxCollectionViewCell
         let category = categoriesViewModel?[collectionView.tag]
         cell.nameLabel.text = category?.options[indexPath.row]
         return cell
     }
     
-    
-    
-    
-}
-
-
-struct HomeViewModel {
-    let categories: [CategoryCellViewModel]
-    
-    struct CategoryCellViewModel {
-        let name: String
-        let options: [String]
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let category = collectionView.tag
+        let option = indexPath.row
+        interactor?.didSelect(categoryIndex: category, optionIndex: option)
     }
+    
+    
+    
 }
+
+

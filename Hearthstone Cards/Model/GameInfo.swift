@@ -49,3 +49,6 @@ class CardCategory: NSObject {
         self.options = options
     }
 }
+
+
+

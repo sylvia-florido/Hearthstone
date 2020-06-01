@@ -9,7 +9,7 @@
 import Foundation
 
 protocol CardsListPresenterProtocol {
-    
+    func presentCategoryName(_ name: String)
 }
 
 class CardsListPresenter: CardsListPresenterProtocol {
@@ -18,4 +18,9 @@ class CardsListPresenter: CardsListPresenterProtocol {
     init(with controller: CardsListViewControllerProtocol) {
         self.controller = controller
     }
+    
+    func presentCategoryName(_ name: String) {
+        controller?.displayCategoryName(name)
+    }
+
 }

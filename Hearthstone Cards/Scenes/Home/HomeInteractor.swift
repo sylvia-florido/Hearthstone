@@ -10,6 +10,7 @@ import Foundation
 
 protocol HomeInteractorProtocol {
     func fetchCategories()
+    func didSelect(categoryIndex: Int, optionIndex: Int)
 }
 
 class HomeInteractor: HomeInteractorProtocol {
@@ -31,5 +32,15 @@ class HomeInteractor: HomeInteractorProtocol {
         } else {
             // display error
         }
+    }
+    
+    func didSelect(categoryIndex: Int, optionIndex: Int) {
+        guard let categories = categories, categories.count > categoryIndex else { return }
+        let selectedCategory = categories[categoryIndex]
+        
+        guard selectedCategory.options.count > optionIndex else { return }
+        let option = selectedCategory.options[optionIndex]
+        
+        presenter.presentCardsList(categoryName: selectedCategory.name, option: option)
     }
 }

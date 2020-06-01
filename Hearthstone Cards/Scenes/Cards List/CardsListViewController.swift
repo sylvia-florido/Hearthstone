@@ -9,29 +9,51 @@
 import UIKit
 
 protocol CardsListViewControllerProtocol: class {
-    
+    func displayCategoryName(_ name: String)
 }
 
-class CardsListViewController: UIViewController, CardsListViewControllerProtocol {
+class CardsListViewController: UIViewController, CardsListViewControllerProtocol, UICollectionViewDelegate, UICollectionViewDataSource {
 
     var router: HearthstoneRouterProtocol?
     var interactor: CardsListInteractorProtocol?
     
+    @IBOutlet weak var filterNameLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupViews()
+        interactor?.getCategoryName()
+        interactor?.fetchCards()
     }
 
 
-    /*
+   private func setupViews() {
+       collectionView.dataSource = self
+       collectionView.delegate = self
+        collectionView.register(UINib(nibName: "CardCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
+    }
+    
+    func displayCategoryName(_ name: String) {
+        self.filterNameLabel.text = name
+    }
+    
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func backButton(_ sender: UIButton) {
+        router?.backFromCardsListScene()
     }
-    */
-
+    
+    
+    // MARK: - UICollectionViewDataSource
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CardCollectionViewCell
+        cell.backgroundColor = .blue
+        return cell
+    }
 }

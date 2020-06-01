@@ -13,7 +13,8 @@ protocol HearthstoneRouterProtocol: class {
     var navigationController: UINavigationController { get set }
     func start()
     func showHomeScene()
-    func showCardsList()
+    func showCardsList(categoryName: String, option: String)
+    func backFromCardsListScene()
 }
 
 
@@ -38,14 +39,16 @@ class HearthstoneRouter: HearthstoneRouterProtocol {
         navigationController.pushViewController(controller, animated: true)
     }
     
-    func showCardsList() {
+    func showCardsList(categoryName: String, option: String) {
         let controller = CardsListViewController()
         let presenter = CardsListPresenter(with: controller)
-        let interactor = CardsListInteractor(with: presenter)
+        let interactor = CardsListInteractor(with: presenter, categoryName: categoryName, option: option)
         controller.interactor = interactor
         controller.router = self
         navigationController.pushViewController(controller, animated: true)
     }
     
-    
+    func backFromCardsListScene() {
+        navigationController.popViewController(animated: true)
+    }
 }

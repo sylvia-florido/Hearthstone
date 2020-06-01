@@ -1,5 +1,5 @@
 //
-//  CardCollectionViewCell.swift
+//  BoxCollectionViewCell.swift
 //  Hearthstone Cards
 //
 //  Created by Silvia Florido on 31/05/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CardCollectionViewCell: UICollectionViewCell {
+class BoxCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var nameLabel: UILabel!

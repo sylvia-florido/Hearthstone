@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CardCollectionViewCell" customModule="Hearthstone_Cards" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="BoxCollectionViewCell" customModule="Hearthstone_Cards" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="152" height="112"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -51,7 +51,7 @@
             <size key="customSize" width="148" height="108"/>
             <connections>
                 <outlet property="cardView" destination="hGX-An-Ud9" id="Blk-7D-oZJ"/>
-                <outlet property="nameLabel" destination="4V1-0L-FwU" id="19v-3z-WzO"/>
+                <outlet property="nameLabel" destination="4V1-0L-FwU" id="QEY-lx-WPI"/>
             </connections>
             <point key="canvasLocation" x="208.69565217391306" y="152.00892857142856"/>
         </collectionViewCell>

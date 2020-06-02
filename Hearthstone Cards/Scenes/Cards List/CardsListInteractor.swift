@@ -54,7 +54,7 @@ class CardsListInteractor: CardsListInteractorProtocol {
     }
     
     var page: Int = 0
-    var batch: Int = 20
+    var batch: Int = 8
     var shouldContinueDataRefresh = true
     
     var startIndex: Int {
@@ -96,7 +96,7 @@ class CardsListInteractor: CardsListInteractorProtocol {
         
         downloadGroup.notify(queue: DispatchQueue.main) {
             self.page += 1
-            if self.cachedUrlStrings.count < 20 {
+            if self.cachedUrlStrings.count < self.batch {
                 self.fetchMoreImages()
             } else {
                 self.presenter.presentActivityIndicator(false)

@@ -99,7 +99,8 @@ class CardsListInteractor: CardsListInteractorProtocol {
             self.page += 1
             if self.cachedUrlStrings.count < self.batch {
                 self.fetchMoreImages()
-            } else {
+            }
+            if self.cachedUrlStrings.count > 1 {
                 self.presenter.presentActivityIndicator(false)
                 self.presenter.presentImages(self.cachedUrlStrings)
             }

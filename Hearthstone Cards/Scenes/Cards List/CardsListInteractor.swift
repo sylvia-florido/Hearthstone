@@ -12,6 +12,7 @@ protocol CardsListInteractorProtocol {
     func getCategoryName()
     func fetchCards()
     func fetchMoreImages()
+    func stopFetching()
 }
 
 class CardsListInteractor: CardsListInteractorProtocol {
@@ -35,22 +36,26 @@ class CardsListInteractor: CardsListInteractorProtocol {
         presenter.presentCategoryName(categoryName)
     }
     
-    
-    
     func fetchCards() {
         repository.getCardsByFilter(filter: categoryFilter, option: option) {  (cards, error) in
             if let cards = cards {
                 let cardsWithUrls = cards.filter { !$0.imgUrl.isEmpty }
                 self.cards = cardsWithUrls
+                print("Got \(cardsWithUrls.count) cards with urls.")
                 self.fetchMoreImages()
             } else {
-                // display error
+                self.presenter.presentError("Desculpe, não foi possível carregar cards nesse momento.")
             }
         }
     }
     
+    func stopFetching() {
+        shouldContinueDataRefresh = false
+    }
+    
     var page: Int = 0
     var batch: Int = 20
+    var shouldContinueDataRefresh = true
     
     var startIndex: Int {
         return page * batch
@@ -65,7 +70,11 @@ class CardsListInteractor: CardsListInteractorProtocol {
     var cachedUrlStrings: [String] = [String]()
 
     func fetchMoreImages() {
+        guard shouldContinueDataRefresh else { return }  // case viewWillDisappear
         guard let cards = cards else { return }
+        guard endIndex >= startIndex else { return }  // case no more images to show
+        
+        presenter.presentActivityIndicator(true)
         
         let downloadGroup = DispatchGroup()
         print("Initial urls for page \(page): ------------------- ")
@@ -77,7 +86,6 @@ class CardsListInteractor: CardsListInteractorProtocol {
             if let url = URL(string: card.imgUrl) {
                 repository.cacheImage(withURL: url) { (success) in
                     if success {
-                        print("Cached image for url: \(url.absoluteString)")
                         self.cachedUrlStrings.append(card.imgUrl)
                     }
                     downloadGroup.leave()
@@ -91,6 +99,7 @@ class CardsListInteractor: CardsListInteractorProtocol {
             if self.cachedUrlStrings.count < 20 {
                 self.fetchMoreImages()
             } else {
+                self.presenter.presentActivityIndicator(false)
                 self.presenter.presentImages(self.cachedUrlStrings)
             }
         }

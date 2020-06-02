@@ -111,8 +111,13 @@ class BaseRequester: NSObject {
     
     
     static func cacheImage(withURL url:URL, completion: @escaping (_ success: Bool)->()) {
-        downloadImage(withURL: url) { (image) in
-            completion(image != nil)
+        if let _ = cache.object(forKey: url.absoluteString as NSString) {
+            print("Image already in cache for url: \(url.absoluteString)")
+            completion(true)
+        } else {
+            downloadImage(withURL: url) { (image) in
+                completion(image != nil)
+            }
         }
     }
     
@@ -125,6 +130,7 @@ class BaseRequester: NSObject {
             }
             if let downloadedImage = downloadedImage {
                 cache.setObject(downloadedImage, forKey: url.absoluteString as NSString)
+                print("Cached image for url: \(url.absoluteString)")
             }
             DispatchQueue.main.async {
                 completion(downloadedImage)

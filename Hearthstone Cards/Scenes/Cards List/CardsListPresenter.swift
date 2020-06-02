@@ -12,6 +12,8 @@ protocol CardsListPresenterProtocol {
     func presentCategoryName(_ name: String)
     func presentImages(_ imagesUrlStr: [String])
     func presentImages(_ cacheCount: Int)
+    func presentActivityIndicator(_ open: Bool)
+    func presentError(_ message: String)
 }
 
 class CardsListPresenter: CardsListPresenterProtocol {
@@ -32,8 +34,14 @@ class CardsListPresenter: CardsListPresenterProtocol {
     }
     
     func presentImages(_ cacheCount: Int) {
-//        let viewModel = CardsListViewModel.CardsUrls(cacheCount: cacheCount, cardsUrlList: [String]())
         controller?.displayImagesCache(cacheCount)
     }
+    
+    func presentActivityIndicator(_ open: Bool) {
+        controller?.displayActivityIndicator(open)
+    }
 
+    func presentError(_ message: String) {
+        controller?.displayError(message)
+    }
 }

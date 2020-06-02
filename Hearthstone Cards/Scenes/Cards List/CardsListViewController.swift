@@ -12,15 +12,21 @@ protocol CardsListViewControllerProtocol: class {
     func displayCategoryName(_ viewModel: CardsListViewModel.CategoryName)
     func displayImages(_ viewModel: CardsListViewModel.CardsUrls)
     func displayImagesCache(_ cacheCount: Int)
+    func displayActivityIndicator(_ open: Bool)
+    func displayError(_ message: String)
 }
 
 class CardsListViewController: UIViewController, CardsListViewControllerProtocol, UICollectionViewDelegate, UICollectionViewDataSource {
-
+    
     var router: HearthstoneRouterProtocol?
     var interactor: CardsListInteractorProtocol?
     
     @IBOutlet weak var filterNameLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var loadingViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var emptyStateView: UIView!
+    @IBOutlet weak var errorMessageLabel: UILabel!
     
     var imagesUrlStr: [String]?
     var imagesCacheCount: Int = 0
@@ -33,11 +39,16 @@ class CardsListViewController: UIViewController, CardsListViewControllerProtocol
         interactor?.fetchCards()
     }
     
-
-   private func setupViews() {
-       collectionView.dataSource = self
-       collectionView.delegate = self
+    override func viewWillDisappear(_ animated: Bool) {
+        interactor?.stopFetching()
+    }
+    
+    
+    private func setupViews() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.register(UINib(nibName: "CardCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
+        emptyStateView.isHidden = true
     }
     
     func displayCategoryName(_ viewModel: CardsListViewModel.CategoryName) {
@@ -54,7 +65,7 @@ class CardsListViewController: UIViewController, CardsListViewControllerProtocol
         self.imagesCacheCount = cacheCount
     }
     
-
+    
     // MARK: - Navigation
     @IBAction func backButton(_ sender: UIButton) {
         router?.backFromCardsListScene()
@@ -71,7 +82,6 @@ class CardsListViewController: UIViewController, CardsListViewControllerProtocol
         
         if let urlStr = imagesUrlStr, urlStr.count > indexPath.row {
             if let url = URL(string: urlStr[indexPath.row]) {
-//                print("URL : \(url.absoluteString)")
                 HearthstoneRepository().getImage(withURL: url ) { image in
                     cell.imageView.image = image
                 }
@@ -80,8 +90,7 @@ class CardsListViewController: UIViewController, CardsListViewControllerProtocol
         return cell
     }
     
-    
-    
+
     
     var fetching: Bool = false
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -99,6 +108,18 @@ class CardsListViewController: UIViewController, CardsListViewControllerProtocol
         interactor?.fetchMoreImages()
     }
     
+    func displayActivityIndicator(_ open: Bool) {
+        open ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
+        
+        UIView.animate(withDuration: 0.5) {
+            self.loadingViewHeight.constant = open ? 200 : 0
+        }
+    }
+    
+    func displayError(_ message: String) {
+        emptyStateView.isHidden = false
+        errorMessageLabel.text = message
+    }
 }
 
 

@@ -57,6 +57,7 @@ class CardsListViewController: UIViewController, CardsListViewControllerProtocol
     
     func displayImages(_ viewModel: CardsListViewModel.CardsUrls) {
         self.imagesUrlStr = viewModel.cardsUrlList
+        emptyStateView.isHidden = true
         collectionView.reloadData()
         fetching = false
     }

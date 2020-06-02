@@ -37,6 +37,7 @@ class CardsListInteractor: CardsListInteractorProtocol {
     }
     
     func fetchCards() {
+        presenter.presentError("Loading cards ...")
         repository.getCardsByFilter(filter: categoryFilter, option: option) {  (cards, error) in
             if let cards = cards {
                 let cardsWithUrls = cards.filter { !$0.imgUrl.isEmpty }

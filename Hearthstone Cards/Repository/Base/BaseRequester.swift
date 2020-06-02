@@ -109,6 +109,14 @@ class BaseRequester: NSObject {
         }
     }
     
+    
+    static func cacheImage(withURL url:URL, completion: @escaping (_ success: Bool)->()) {
+        downloadImage(withURL: url) { (image) in
+            completion(image != nil)
+        }
+    }
+    
+    
     static func downloadImage(withURL url:URL, completion: @escaping (_ image:UIImage?)->()) {
         let dataTask = URLSession.shared.dataTask(with: url) { data, responseURL, error in
             var downloadedImage:UIImage?

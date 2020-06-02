@@ -11,6 +11,7 @@ import Foundation
 protocol CardsListPresenterProtocol {
     func presentCategoryName(_ name: String)
     func presentImages(_ imagesUrlStr: [String])
+    func presentImages(_ cacheCount: Int)
 }
 
 class CardsListPresenter: CardsListPresenterProtocol {
@@ -30,6 +31,9 @@ class CardsListPresenter: CardsListPresenterProtocol {
         controller?.displayImages(viewModel)
     }
     
-
+    func presentImages(_ cacheCount: Int) {
+//        let viewModel = CardsListViewModel.CardsUrls(cacheCount: cacheCount, cardsUrlList: [String]())
+        controller?.displayImagesCache(cacheCount)
+    }
 
 }

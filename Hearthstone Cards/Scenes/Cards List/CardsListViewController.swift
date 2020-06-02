@@ -11,6 +11,7 @@ import UIKit
 protocol CardsListViewControllerProtocol: class {
     func displayCategoryName(_ viewModel: CardsListViewModel.CategoryName)
     func displayImages(_ viewModel: CardsListViewModel.CardsUrls)
+    func displayImagesCache(_ cacheCount: Int)
 }
 
 class CardsListViewController: UIViewController, CardsListViewControllerProtocol, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -22,6 +23,7 @@ class CardsListViewController: UIViewController, CardsListViewControllerProtocol
     @IBOutlet weak var collectionView: UICollectionView!
     
     var imagesUrlStr: [String]?
+    var imagesCacheCount: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +33,6 @@ class CardsListViewController: UIViewController, CardsListViewControllerProtocol
         interactor?.fetchCards()
     }
     
-
 
    private func setupViews() {
        collectionView.dataSource = self
@@ -46,7 +47,13 @@ class CardsListViewController: UIViewController, CardsListViewControllerProtocol
     func displayImages(_ viewModel: CardsListViewModel.CardsUrls) {
         self.imagesUrlStr = viewModel.cardsUrlList
         collectionView.reloadData()
+        fetching = false
     }
+    
+    func displayImagesCache(_ cacheCount: Int) {
+        self.imagesCacheCount = cacheCount
+    }
+    
 
     // MARK: - Navigation
     @IBAction func backButton(_ sender: UIButton) {
@@ -64,7 +71,7 @@ class CardsListViewController: UIViewController, CardsListViewControllerProtocol
         
         if let urlStr = imagesUrlStr, urlStr.count > indexPath.row {
             if let url = URL(string: urlStr[indexPath.row]) {
-                print("URL : \(url.absoluteString)")
+//                print("URL : \(url.absoluteString)")
                 HearthstoneRepository().getImage(withURL: url ) { image in
                     cell.imageView.image = image
                 }
@@ -72,6 +79,26 @@ class CardsListViewController: UIViewController, CardsListViewControllerProtocol
         }
         return cell
     }
+    
+    
+    
+    
+    var fetching: Bool = false
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        if offsetY > (contentHeight - scrollView.frame.height - 200) {
+            if !fetching {
+                beginFetch()
+            }
+        }
+    }
+    
+    func beginFetch() {
+        fetching = true
+        interactor?.fetchMoreImages()
+    }
+    
 }
 
 
